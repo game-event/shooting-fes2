@@ -176,7 +176,7 @@
     backdrop-filter:blur(6px);
   }
   .hero-dates b{color:var(--gold-deep); font-weight:400;}
-  .hero-sub{color:var(--muted); font-size:15px; margin-bottom:20px;}
+  .hero-sub{color:#fff; font-size:15px; margin-bottom:20px;}
   .hero-organizer{
     display:inline-flex; align-items:center; gap:14px; flex-wrap:wrap; justify-content:center;
     font-family:var(--font-mono); font-size:12.5px; color:var(--muted);
@@ -343,15 +343,16 @@
   .entries-wrap{min-height:80px;}
   .entry-row{
     display:flex; align-items:flex-start; gap:20px;
-    background:var(--panel); backdrop-filter:blur(8px); border:1px solid var(--line); border-left:4px solid var(--blue);
+    background:#ffffff; border:1px solid #e7e3d6; border-left:4px solid var(--blue);
     padding:20px; border-radius:12px; margin-bottom:14px; transition:box-shadow .2s;
+    box-shadow:0 4px 16px rgba(0,0,0,.18);
   }
-  .entry-row:hover{box-shadow:0 6px 18px rgba(95,208,255,.12);}
+  .entry-row:hover{box-shadow:0 6px 22px rgba(0,0,0,.24);}
   .entry-left{display:flex; flex-direction:column; align-items:center; flex:none; gap:8px;}
   .entry-rank{font-family:var(--font-display); color:var(--gold-deep); font-size:26px; letter-spacing:.02em; text-align:center;}
   .entry-avatar{
     width:120px; height:120px; flex:none; border-radius:50%; overflow:hidden; border:3px solid var(--gold-dim);
-    background:var(--panel-2); display:flex; align-items:center; justify-content:center;
+    background:#f4efe0; display:flex; align-items:center; justify-content:center;
     font-family:var(--font-head); font-weight:700; color:var(--gold-deep); font-size:44px;
   }
   .entry-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
@@ -360,18 +361,18 @@
   .entry-streamer{font-family:var(--font-head); font-weight:700; font-size:22px; line-height:1.3;}
   .entry-streamer a{color:var(--blue);}
   .entry-streamer a:hover{text-decoration:underline;}
-  .entry-social{font-size:13.5px; color:var(--muted); white-space:nowrap; display:flex; gap:14px;}
+  .entry-social{font-size:13.5px; color:#6b6b78; white-space:nowrap; display:flex; gap:14px;}
   .entry-social b{color:var(--gold-deep); font-weight:600; margin-right:4px;}
   .entry-social a{color:var(--blue);}
   .entry-social a:hover{text-decoration:underline;}
-  .entry-field{font-size:15px; color:#e6e5ef; margin-top:8px; line-height:1.6;}
+  .entry-field{font-size:15px; color:#2a2a35; margin-top:8px; line-height:1.6;}
   .entry-field b{color:var(--gold-deep); font-weight:600; font-family:var(--font-head); margin-right:6px;}
   .entry-field a{color:var(--blue);}
   .entry-field a:hover{text-decoration:underline;}
-  .entry-field .sep{color:var(--muted); margin:0 12px;}
+  .entry-field .sep{color:#a8a494; margin:0 12px;}
   .entry-dates{display:inline-flex; gap:6px; flex-wrap:wrap; vertical-align:middle;}
-  .date-chip{font-family:var(--font-mono); font-size:12.5px; border:1px solid var(--line); padding:3px 9px; border-radius:12px; background:var(--panel-2); color:var(--muted);}
-  .entry-comment{font-size:14px; color:var(--muted); border-top:1px dashed var(--line); padding-top:10px; margin-top:10px;}
+  .date-chip{font-family:var(--font-mono); font-size:12.5px; border:1px solid #e7e3d6; padding:3px 9px; border-radius:12px; background:#f4efe0; color:#6b6b78;}
+  .entry-comment{font-size:14px; color:#6b6b78; border-top:1px dashed #e7e3d6; padding-top:10px; margin-top:10px;}
   .empty-state{text-align:center; color:var(--muted); font-size:14px; padding:40px 20px; border:1px dashed var(--line); border-radius:10px; background:rgba(255,255,255,.03);}
   .loading-state{text-align:center; color:var(--muted); font-family:var(--font-mono); font-size:13px; padding:30px;}
 
@@ -496,8 +497,8 @@
       <li data-i18n="notice.li2">各ゲームタイトル、ゲーム会社の配信ガイドラインを必ず確認しましょう。</li>
       <li data-i18n="notice.li3">ニコ生やYouTubeなど、他サイトと同時配信しても大丈夫ですが、各サイトのルールに則ってトラブルのないようにしてください。</li>
       <li data-i18n="notice.li4">告知や配信画面に表示させる用にイベントのロゴ画像を使用(加工も可)しても大丈夫です。</li>
-      <li data-i18n="notice.li5">他の参加者の配信をミラーする時は、必ずその参加者の許可を得てください。無断のミラーはトラブルの元となります。</li>
-      <li data-i18n="notice.li6">イベント中にシューティングゲーム以外の配信をしていただいてもかまいません。その際はタイトルの「シューティング配信祭」を外してください。</li>
+      <li data-i18n="notice.li5">他の参加者の配信をミラーする時は、必ずその参加者の許可を得てください。</li>
+      <li data-i18n="notice.li6">イベント中にシューティング以外の配信をする際は、タイトルに「シューティング配信祭」をつけないでください。</li>
       <li data-i18n="notice.li8">当方で迷惑行為、配信にふさわしくないと判断した場合は、参加をお断りする場合がございます。</li>
     </ul>
   </div>
@@ -511,7 +512,7 @@
   <div class="section-head">
     <div class="section-eyebrow">ENTRIES</div>
     <h2 class="section-title" data-i18n="streams.title">参加者一覧</h2>
-    <p class="section-desc" data-i18n="streams.desc">応募内容はスプレッドシートと連動して自動的に表示されます。反映まで少し時間がかかる場合があります。</p>
+    <p class="section-desc" data-i18n="streams.desc">応募内容は自動的に表示されます。反映まで少し時間がかかる場合があります。</p>
   </div>
   <div class="filter-tabs" id="filterTabs">
     <button class="filter-tab active" data-filter="ALL">ALL</button>
@@ -663,15 +664,15 @@
       'notice.li2':'各ゲームタイトル、ゲーム会社の配信ガイドラインを必ず確認しましょう。',
       'notice.li3':'ニコ生やYouTubeなど、他サイトと同時配信しても大丈夫ですが、各サイトのルールに則ってトラブルのないようにしてください。',
       'notice.li4':'告知や配信画面に表示させる用にイベントのロゴ画像を使用(加工も可)しても大丈夫です。',
-      'notice.li5':'他の参加者の配信をミラーする時は、必ずその参加者の許可を得てください。無断のミラーはトラブルの元となります。',
-      'notice.li6':'イベント中にシューティングゲーム以外の配信をしていただいてもかまいません。その際はタイトルの「シューティング配信祭」を外してください。',
+      'notice.li5':'他の参加者の配信をミラーする時は、必ずその参加者の許可を得てください。',
+      'notice.li6':'イベント中にシューティング以外の配信をする際は、タイトルに「シューティング配信祭」をつけないでください。',
       'notice.li8':'当方で迷惑行為、配信にふさわしくないと判断した場合は、参加をお断りする場合がございます。',
       'entry.title':'参加応募',
       'entry.desc':'下のフォームに必要事項を入力して送信してください。<br>送信後の確認画面に表示される「回答を編集」リンクを保存しておくと、後から内容を修正できます。<br>このイベントに参加してみたい!という方は、お気軽にご応募ください。',
       'entry.note':'※フォームが表示されない場合や不明点がある場合は、主催者(X または Twitchウィスパー)までご連絡ください。',
       'date.1010':'10月10日','date.1011':'10月11日','date.1012':'10月12日',
       'field.game':'ゲームタイトル','field.dates':'配信予定日','field.time':'配信開始予定時刻',
-      'streams.title':'参加者一覧','streams.desc':'応募内容はスプレッドシートと連動して自動的に表示されます。反映まで少し時間がかかる場合があります。',
+      'streams.title':'参加者一覧','streams.desc':'応募内容は自動的に表示されます。反映まで少し時間がかかる場合があります。',
       'streams.loading':'読み込み中...',
       'streams.empty':'まだ応募がありません。最初の参加者になりましょう!','streams.emptyFiltered':'該当する配信予定はまだありません。',
       'streams.loadError':'読み込みに失敗しました。時間をおいて再度お試しください。',
@@ -702,15 +703,15 @@
       'notice.li2':'Be sure to check the streaming guidelines for each game title and publisher.',
       'notice.li3':"Simulcasting on other platforms (Niconico Live, YouTube, etc.) is fine — please follow each platform's own rules to avoid trouble.",
       'notice.li4':"You're welcome to use the event logo (edits allowed) for announcements or on your stream screen.",
-      'notice.li5':"If you mirror another participant's stream, be sure to get their permission first — unauthorized mirroring can cause trouble.",
-      'notice.li6':'Streaming things other than shooting games during the event is totally fine — just remove "シューティング配信祭" from your title while you do.',
+      'notice.li5':"If you mirror another participant's stream, be sure to get their permission first.",
+      'notice.li6':'If you stream something other than shooting games during the event, please do not include "シューティング配信祭" in your title.',
       'notice.li8':'We may decline participation if we judge someone\'s conduct to be a nuisance or unsuitable for the event.',
       'entry.title':'Entry',
       'entry.desc':'Fill in the required fields in the form below and submit.<br>Save the "Edit your response" link shown on the confirmation screen if you\'d like to make changes later.<br>If you\'d like to join this event, feel free to apply!',
       'entry.note':'*If the form does not display, or you have any questions, please contact the organizer via X or a Twitch whisper.',
       'date.1010':'Oct 10','date.1011':'Oct 11','date.1012':'Oct 12',
       'field.game':'Game Title','field.dates':'Streaming Date(s)','field.time':'Start Time',
-      'streams.title':'Participants','streams.desc':'Entries are shown automatically from the spreadsheet. It may take a little time to reflect new submissions.',
+      'streams.title':'Participants','streams.desc':'Entries are shown automatically. It may take a little time to reflect new submissions.',
       'streams.loading':'Loading...',
       'streams.empty':'No entries yet. Be the first to join!','streams.emptyFiltered':'No entries match this filter yet.',
       'streams.loadError':'Failed to load. Please try again later.',
@@ -818,6 +819,7 @@
       var dateChips = dates.map(function(d){return '<span class="date-chip">'+escapeHtml(localizedDate(d, dict))+'</span>';}).join('');
 
       var social = '';
+      if(username){ social += '<span><b>Twitch：</b><a href="'+safeUrl+'" target="_blank" rel="noopener">'+escapeHtml(username)+'</a></span>'; }
       if(e.xAccount){ social += '<span><b>X：</b><a href="'+escapeHtml(formatXUrl(e.xAccount))+'" target="_blank" rel="noopener">'+escapeHtml(xDisplayName(e.xAccount))+'</a></span>'; }
       if(e.discordAccount){ social += '<span><b>Discord：</b>'+escapeHtml(e.discordAccount)+'</span>'; }
 
