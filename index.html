@@ -6,7 +6,7 @@
 <title>第2回シューティング配信祭</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Share+Tech+Mono&family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg-top: #05070f;
@@ -27,7 +27,7 @@
     --muted: #a7aec6;
     --font-display: 'Anton', sans-serif;
     --font-head: 'Oswald', sans-serif;
-    --font-body: 'Noto Sans JP', sans-serif;
+    --font-body: 'DotGothic16', 'Noto Sans JP', sans-serif;
     --font-mono: 'Share Tech Mono', monospace;
   }
 
@@ -42,29 +42,67 @@
     position:relative;
   }
 
-  /* starfield: twinkling stars across the whole page */
+  /* scrolling starfield: vertical scroll like a shmup background */
   body::before{
     content:"";
-    position:fixed; inset:0;
+    position:fixed; inset:-620px 0 0 0;
+    height:calc(100% + 1240px);
     background-image:
-      radial-gradient(1.5px 1.5px at 12% 22%, rgba(255,255,255,.9) 0, transparent 50%),
-      radial-gradient(1px 1px at 82% 14%, rgba(255,255,255,.7) 0, transparent 50%),
-      radial-gradient(1.5px 1.5px at 42% 62%, rgba(255,255,255,.6) 0, transparent 50%),
-      radial-gradient(1px 1px at 64% 82%, rgba(255,255,255,.8) 0, transparent 50%),
-      radial-gradient(1.5px 1.5px at 92% 72%, rgba(255,255,255,.6) 0, transparent 50%),
-      radial-gradient(1px 1px at 27% 90%, rgba(255,255,255,.7) 0, transparent 50%),
-      radial-gradient(1.5px 1.5px at 8% 55%, rgba(240,193,75,.55) 0, transparent 50%),
-      radial-gradient(1.5px 1.5px at 55% 8%, rgba(95,208,255,.5) 0, transparent 50%),
-      radial-gradient(1px 1px at 70% 45%, rgba(255,255,255,.5) 0, transparent 50%),
-      radial-gradient(1.5px 1.5px at 95% 30%, rgba(255,255,255,.6) 0, transparent 50%);
+      radial-gradient(1.5px 1.5px at 12% 22%, rgba(255,255,255,.85) 0, transparent 55%),
+      radial-gradient(1.2px 1.2px at 82% 14%, rgba(255,255,255,.65) 0, transparent 55%),
+      radial-gradient(1.5px 1.5px at 42% 62%, rgba(255,255,255,.6) 0, transparent 55%),
+      radial-gradient(1.2px 1.2px at 64% 82%, rgba(255,255,255,.7) 0, transparent 55%),
+      radial-gradient(1.5px 1.5px at 92% 72%, rgba(255,255,255,.6) 0, transparent 55%),
+      radial-gradient(1.5px 1.5px at 8% 55%, rgba(240,193,75,.5) 0, transparent 55%),
+      radial-gradient(1.5px 1.5px at 55% 8%, rgba(95,208,255,.45) 0, transparent 55%),
+      radial-gradient(1.2px 1.2px at 95% 30%, rgba(255,255,255,.6) 0, transparent 55%);
     background-size:620px 620px;
+    background-repeat:repeat;
     pointer-events:none;
     z-index:0;
-    animation:twinkle 5s ease-in-out infinite alternate;
+    animation:starScroll 16s linear infinite;
   }
-  @keyframes twinkle{
-    0%{opacity:.7;}
-    100%{opacity:1;}
+  @keyframes starScroll{
+    0%{background-position:0 0;}
+    100%{background-position:0 620px;}
+  }
+
+  /* fast bright foreground stars: reinforces the sense of speed */
+  .starfield-fg{
+    position:fixed; inset:-460px 0 0 0;
+    height:calc(100% + 920px);
+    background-image:
+      radial-gradient(2px 6px at 20% 15%, rgba(255,255,255,.7) 0, transparent 70%),
+      radial-gradient(2px 5px at 70% 45%, rgba(95,208,255,.6) 0, transparent 70%),
+      radial-gradient(2px 6px at 42% 75%, rgba(255,255,255,.65) 0, transparent 70%),
+      radial-gradient(2px 5px at 88% 88%, rgba(240,193,75,.6) 0, transparent 70%);
+    background-size:460px 460px;
+    background-repeat:repeat;
+    pointer-events:none;
+    z-index:0;
+    animation:starScrollFast 6s linear infinite;
+  }
+  @keyframes starScrollFast{
+    0%{background-position:0 0;}
+    100%{background-position:0 460px;}
+  }
+
+  /* CRT scanline overlay */
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    background-image:repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,.12) 0px,
+      rgba(0,0,0,.12) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    background-size:100% 3px;
+    pointer-events:none;
+    z-index:2;
+    mix-blend-mode:multiply;
+    opacity:.3;
   }
 
   a{color:inherit; text-decoration:none;}
@@ -390,11 +428,14 @@
   @media (prefers-reduced-motion: reduce){
     .hero-rays{animation:none;}
     .bullets span{animation:none; opacity:0;}
+    body::before{animation:none;}
+    .starfield-fg{animation:none;}
     html{scroll-behavior:auto;}
   }
 </style>
 </head>
 <body>
+<div class="starfield-fg" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="nav-inner">
