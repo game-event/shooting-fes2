@@ -342,25 +342,29 @@
 
   .entries-wrap{min-height:80px;}
   .entry-row{
-    display:grid; grid-template-columns:64px 60px 1.2fr 1.5fr; gap:16px; align-items:center;
+    display:flex; align-items:flex-start; gap:20px;
     background:var(--panel); backdrop-filter:blur(8px); border:1px solid var(--line); border-left:4px solid var(--blue);
-    padding:16px 18px; border-radius:12px; margin-bottom:12px; transition:box-shadow .2s;
+    padding:20px; border-radius:12px; margin-bottom:14px; transition:box-shadow .2s;
   }
   .entry-row:hover{box-shadow:0 6px 18px rgba(95,208,255,.12);}
-  .entry-rank{font-family:var(--font-mono); color:var(--gold-deep); font-size:13px; text-align:center;}
+  .entry-rank{font-family:var(--font-mono); color:var(--gold-deep); font-size:12px; margin-bottom:6px;}
   .entry-avatar{
-    width:56px; height:56px; border-radius:50%; overflow:hidden; border:2px solid var(--gold-dim);
+    width:88px; height:88px; flex:none; border-radius:50%; overflow:hidden; border:3px solid var(--gold-dim);
     background:var(--panel-2); display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-head); font-weight:700; color:var(--gold-deep); font-size:20px;
+    font-family:var(--font-head); font-weight:700; color:var(--gold-deep); font-size:34px;
   }
-  .entry-avatar img{width:100%; height:100%; object-fit:cover;}
-  .entry-streamer{font-family:var(--font-head); font-weight:600; font-size:15px;}
+  .entry-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .entry-main{flex:1; min-width:0;}
+  .entry-streamer{font-family:var(--font-head); font-weight:700; font-size:22px; line-height:1.3;}
   .entry-streamer a{color:var(--blue);}
   .entry-streamer a:hover{text-decoration:underline;}
-  .entry-games{font-size:13.5px; color:#dcdbe8;}
-  .entry-dates{font-family:var(--font-mono); font-size:12px; color:var(--muted); display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;}
-  .date-chip{border:1px solid var(--line); padding:3px 8px; border-radius:12px; background:var(--panel-2);}
-  .entry-comment{grid-column:1 / -1; font-size:12.5px; color:var(--muted); border-top:1px dashed var(--line); padding-top:10px; margin-top:4px;}
+  .entry-field{font-size:15px; color:#e6e5ef; margin-top:6px; line-height:1.6;}
+  .entry-field b{color:var(--gold-deep); font-weight:600; font-family:var(--font-head); margin-right:6px;}
+  .entry-field a{color:var(--blue);}
+  .entry-field a:hover{text-decoration:underline;}
+  .entry-dates{display:inline-flex; gap:6px; flex-wrap:wrap; vertical-align:middle;}
+  .date-chip{font-family:var(--font-mono); font-size:12.5px; border:1px solid var(--line); padding:3px 9px; border-radius:12px; background:var(--panel-2); color:var(--muted);}
+  .entry-comment{font-size:14px; color:var(--muted); border-top:1px dashed var(--line); padding-top:10px; margin-top:10px;}
   .empty-state{text-align:center; color:var(--muted); font-size:14px; padding:40px 20px; border:1px dashed var(--line); border-radius:10px; background:rgba(255,255,255,.03);}
   .loading-state{text-align:center; color:var(--muted); font-family:var(--font-mono); font-size:13px; padding:30px;}
 
@@ -383,12 +387,10 @@
     .nav-links{display:none;}
     .about-grid{grid-template-columns:1fr;}
     .field-row{grid-template-columns:1fr;}
-    .entry-row{grid-template-columns:44px 1fr; text-align:left;}
-    .entry-rank{grid-row:1; text-align:left;}
-    .entry-avatar{grid-row:1;}
-    .entry-streamer{grid-column:2;}
-    .entry-games{grid-column:1/-1;}
-    .entry-dates{grid-column:1/-1; justify-content:flex-start;}
+    .entry-row{gap:14px; padding:16px;}
+    .entry-avatar{width:64px; height:64px; font-size:26px;}
+    .entry-streamer{font-size:18px;}
+    .entry-field{font-size:14px;}
   }
 </style>
 </head>
@@ -587,6 +589,19 @@
     return 'https://x.com/' + encodeURIComponent(v);
   }
 
+  function xDisplayName(x){
+    var v = (x||'').trim();
+    if(!v) return '';
+    if(/^https?:\/\//i.test(v)){
+      try{
+        var u = new URL(v);
+        var parts = u.pathname.split('/').filter(Boolean);
+        return '@' + (parts[0] || v);
+      }catch(e){ return v; }
+    }
+    return v.charAt(0) === '@' ? v : '@' + v;
+  }
+
   function normalizeTwitchUrl(t){
     var v = (t||'').trim();
     if(!v) return '';
@@ -646,6 +661,7 @@
       'entry.desc':'下のフォームに必要事項を入力して送信してください。<br>送信後の確認画面に表示される「回答を編集」リンクを保存しておくと、後から内容を修正できます。<br>このイベントに参加してみたい!という方は、お気軽にご応募ください。',
       'entry.note':'※フォームが表示されない場合や不明点がある場合は、主催者(X または Twitchウィスパー)までご連絡ください。',
       'date.1010':'10月10日','date.1011':'10月11日','date.1012':'10月12日',
+      'field.game':'ゲームタイトル','field.dates':'配信予定日','field.time':'配信開始予定時刻',
       'streams.title':'参加者一覧','streams.desc':'応募内容はスプレッドシートと連動して自動的に表示されます。反映まで少し時間がかかる場合があります。',
       'streams.loading':'読み込み中...',
       'streams.empty':'まだ応募がありません。最初の参加者になりましょう!','streams.emptyFiltered':'該当する配信予定はまだありません。',
@@ -684,6 +700,7 @@
       'entry.desc':'Fill in the required fields in the form below and submit.<br>Save the "Edit your response" link shown on the confirmation screen if you\'d like to make changes later.<br>If you\'d like to join this event, feel free to apply!',
       'entry.note':'*If the form does not display, or you have any questions, please contact the organizer via X or a Twitch whisper.',
       'date.1010':'Oct 10','date.1011':'Oct 11','date.1012':'Oct 12',
+      'field.game':'Game Title','field.dates':'Streaming Date(s)','field.time':'Start Time',
       'streams.title':'Participants','streams.desc':'Entries are shown automatically from the spreadsheet. It may take a little time to reflect new submissions.',
       'streams.loading':'Loading...',
       'streams.empty':'No entries yet. Be the first to join!','streams.emptyFiltered':'No entries match this filter yet.',
@@ -790,16 +807,22 @@
         : escapeHtml(initial);
       var dates = (e.dates||[]).slice().sort(function(a,b){return dateOrder(a)-dateOrder(b);});
       var dateChips = dates.map(function(d){return '<span class="date-chip">'+escapeHtml(localizedDate(d, dict))+'</span>';}).join('');
-      var extraLinks = '';
-      if(e.xAccount){ extraLinks += '<a href="'+escapeHtml(formatXUrl(e.xAccount))+'" target="_blank" rel="noopener" style="margin-right:10px;">X</a>'; }
-      if(e.discordAccount){ extraLinks += '<span style="color:var(--muted);">Discord: '+escapeHtml(e.discordAccount)+'</span>'; }
+
+      var fields = '';
+      if(safeGame){ fields += '<div class="entry-field"><b>'+dict['field.game']+'：</b>'+safeGame+'</div>'; }
+      if(dateChips){ fields += '<div class="entry-field"><b>'+dict['field.dates']+'：</b><span class="entry-dates">'+dateChips+'</span></div>'; }
+      if(safeTime){ fields += '<div class="entry-field"><b>'+dict['field.time']+'：</b>'+safeTime+'</div>'; }
+      if(e.xAccount){ fields += '<div class="entry-field"><b>X：</b><a href="'+escapeHtml(formatXUrl(e.xAccount))+'" target="_blank" rel="noopener">'+escapeHtml(xDisplayName(e.xAccount))+'</a></div>'; }
+      if(e.discordAccount){ fields += '<div class="entry-field"><b>Discord：</b>'+escapeHtml(e.discordAccount)+'</div>'; }
+
       html += '<div class="entry-row" data-key="'+escapeHtml(e._key)+'">' +
-        '<div class="entry-rank">#' + String(idx+1).padStart(2,'0') + '</div>' +
         '<div class="entry-avatar">' + avatarHtml + '</div>' +
-        '<div class="entry-streamer"><a href="'+safeUrl+'" target="_blank" rel="noopener">'+safeName+'</a></div>' +
-        '<div class="entry-games">' + safeGame + (safeTime ? ' <span style="color:var(--muted)">・'+safeTime+'</span>' : '') + '<div class="entry-dates" style="justify-content:flex-start; margin-top:6px;">'+dateChips+'</div></div>' +
-        (extraLinks ? '<div class="entry-comment" style="border-top:none; padding-top:0; font-size:12px;">'+extraLinks+'</div>' : '') +
-        (e.comment ? '<div class="entry-comment">"' + escapeHtml(e.comment) + '"</div>' : '') +
+        '<div class="entry-main">' +
+          '<div class="entry-rank">#' + String(idx+1).padStart(2,'0') + '</div>' +
+          '<div class="entry-streamer"><a href="'+safeUrl+'" target="_blank" rel="noopener">'+safeName+'</a></div>' +
+          fields +
+          (e.comment ? '<div class="entry-comment">"' + escapeHtml(e.comment) + '"</div>' : '') +
+        '</div>' +
         '</div>';
     });
     wrap.innerHTML = html;
