@@ -347,21 +347,28 @@
     padding:20px; border-radius:12px; margin-bottom:14px; transition:box-shadow .2s;
   }
   .entry-row:hover{box-shadow:0 6px 18px rgba(95,208,255,.12);}
-  .entry-rank{font-family:var(--font-mono); color:var(--gold-deep); font-size:12px; margin-bottom:6px;}
+  .entry-left{display:flex; flex-direction:column; align-items:center; flex:none; gap:8px;}
+  .entry-rank{font-family:var(--font-display); color:var(--gold-deep); font-size:26px; letter-spacing:.02em; text-align:center;}
   .entry-avatar{
-    width:88px; height:88px; flex:none; border-radius:50%; overflow:hidden; border:3px solid var(--gold-dim);
+    width:120px; height:120px; flex:none; border-radius:50%; overflow:hidden; border:3px solid var(--gold-dim);
     background:var(--panel-2); display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-head); font-weight:700; color:var(--gold-deep); font-size:34px;
+    font-family:var(--font-head); font-weight:700; color:var(--gold-deep); font-size:44px;
   }
   .entry-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
   .entry-main{flex:1; min-width:0;}
+  .entry-name-row{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px 16px;}
   .entry-streamer{font-family:var(--font-head); font-weight:700; font-size:22px; line-height:1.3;}
   .entry-streamer a{color:var(--blue);}
   .entry-streamer a:hover{text-decoration:underline;}
-  .entry-field{font-size:15px; color:#e6e5ef; margin-top:6px; line-height:1.6;}
+  .entry-social{font-size:13.5px; color:var(--muted); white-space:nowrap; display:flex; gap:14px;}
+  .entry-social b{color:var(--gold-deep); font-weight:600; margin-right:4px;}
+  .entry-social a{color:var(--blue);}
+  .entry-social a:hover{text-decoration:underline;}
+  .entry-field{font-size:15px; color:#e6e5ef; margin-top:8px; line-height:1.6;}
   .entry-field b{color:var(--gold-deep); font-weight:600; font-family:var(--font-head); margin-right:6px;}
   .entry-field a{color:var(--blue);}
   .entry-field a:hover{text-decoration:underline;}
+  .entry-field .sep{color:var(--muted); margin:0 12px;}
   .entry-dates{display:inline-flex; gap:6px; flex-wrap:wrap; vertical-align:middle;}
   .date-chip{font-family:var(--font-mono); font-size:12.5px; border:1px solid var(--line); padding:3px 9px; border-radius:12px; background:var(--panel-2); color:var(--muted);}
   .entry-comment{font-size:14px; color:var(--muted); border-top:1px dashed var(--line); padding-top:10px; margin-top:10px;}
@@ -388,9 +395,11 @@
     .about-grid{grid-template-columns:1fr;}
     .field-row{grid-template-columns:1fr;}
     .entry-row{gap:14px; padding:16px;}
-    .entry-avatar{width:64px; height:64px; font-size:26px;}
+    .entry-avatar{width:80px; height:80px; font-size:30px;}
+    .entry-rank{font-size:18px;}
     .entry-streamer{font-size:18px;}
     .entry-field{font-size:14px;}
+    .entry-social{white-space:normal;}
   }
 </style>
 </head>
@@ -808,20 +817,26 @@
       var dates = (e.dates||[]).slice().sort(function(a,b){return dateOrder(a)-dateOrder(b);});
       var dateChips = dates.map(function(d){return '<span class="date-chip">'+escapeHtml(localizedDate(d, dict))+'</span>';}).join('');
 
+      var social = '';
+      if(e.xAccount){ social += '<span><b>X：</b><a href="'+escapeHtml(formatXUrl(e.xAccount))+'" target="_blank" rel="noopener">'+escapeHtml(xDisplayName(e.xAccount))+'</a></span>'; }
+      if(e.discordAccount){ social += '<span><b>Discord：</b>'+escapeHtml(e.discordAccount)+'</span>'; }
+
+      var scheduleLine = '';
+      if(dateChips){ scheduleLine += '<b>'+dict['field.dates']+'：</b><span class="entry-dates">'+dateChips+'</span>'; }
+      if(safeTime){ scheduleLine += (dateChips ? '<span class="sep">|</span>' : '') + '<b>'+dict['field.time']+'：</b>'+safeTime; }
+
       var fields = '';
       if(safeGame){ fields += '<div class="entry-field"><b>'+dict['field.game']+'：</b>'+safeGame+'</div>'; }
-      if(dateChips){ fields += '<div class="entry-field"><b>'+dict['field.dates']+'：</b><span class="entry-dates">'+dateChips+'</span></div>'; }
-      if(safeTime){ fields += '<div class="entry-field"><b>'+dict['field.time']+'：</b>'+safeTime+'</div>'; }
-      if(e.xAccount){ fields += '<div class="entry-field"><b>X：</b><a href="'+escapeHtml(formatXUrl(e.xAccount))+'" target="_blank" rel="noopener">'+escapeHtml(xDisplayName(e.xAccount))+'</a></div>'; }
-      if(e.discordAccount){ fields += '<div class="entry-field"><b>Discord：</b>'+escapeHtml(e.discordAccount)+'</div>'; }
+      if(scheduleLine){ fields += '<div class="entry-field">'+scheduleLine+'</div>'; }
 
       html += '<div class="entry-row" data-key="'+escapeHtml(e._key)+'">' +
-        '<div class="entry-avatar">' + avatarHtml + '</div>' +
+        '<div class="entry-left"><div class="entry-rank">#' + String(idx+1).padStart(2,'0') + '</div><div class="entry-avatar">' + avatarHtml + '</div></div>' +
         '<div class="entry-main">' +
-          '<div class="entry-rank">#' + String(idx+1).padStart(2,'0') + '</div>' +
-          '<div class="entry-streamer"><a href="'+safeUrl+'" target="_blank" rel="noopener">'+safeName+'</a></div>' +
+          '<div class="entry-name-row"><div class="entry-streamer"><a href="'+safeUrl+'" target="_blank" rel="noopener">'+safeName+'</a></div>' +
+          (social ? '<div class="entry-social">'+social+'</div>' : '') +
+          '</div>' +
           fields +
-          (e.comment ? '<div class="entry-comment">"' + escapeHtml(e.comment) + '"</div>' : '') +
+          (e.comment ? '<div class="entry-comment"><b>コメント：</b>' + escapeHtml(e.comment) + '</div>' : '') +
         '</div>' +
         '</div>';
     });
