@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1200">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第2回シューティング配信祭</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -457,6 +457,34 @@
     .starfield-fg{animation:none;}
     html{scroll-behavior:auto;}
   }
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .nav-inner{padding:10px 14px;}
+    .section{padding:56px 16px;}
+    .section-banner{max-width:320px;}
+    .about-grid{grid-template-columns:1fr;}
+    .field-row{grid-template-columns:1fr;}
+    .checkbox-row{gap:8px;}
+    .hero-logo-stage{width:96%;}
+    .hero-dates{padding:8px 16px;}
+    .hero-count{font-size:15px;}
+    .hero-count b{font-size:1.4em;}
+    .streams-count{font-size:15px;}
+    .streams-count b{font-size:1.4em;}
+    .entry-row{gap:12px; padding:14px;}
+    .entry-left{gap:6px;}
+    .entry-avatar{width:72px; height:72px; font-size:28px;}
+    .entry-rank{font-size:18px;}
+    .entry-streamer{font-size:17px;}
+    .entry-social{font-size:12px;}
+    .entry-field{font-size:13.5px;}
+    .entry-comment{font-size:14px;}
+    .date-chip{font-size:11px; padding:2px 7px;}
+    .btn{padding:12px 22px; font-size:14px;}
+    .btn-cta-large{font-size:16px; padding:16px 32px;}
+    #googleFormFrame{height:900px;}
+  }
 </style>
 </head>
 <body>
@@ -588,7 +616,7 @@
   </div>
   <div class="entry-panel">
     <!-- 手順で控えたGoogleフォームのURLに置き換えてください(末尾に ?embedded=true を付けます) -->
-    <iframe id="googleFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSd-w35f8-Q76ksy-uy3nDVCRZFayti8ezyw9qa-f7am8UxBPQ/viewform?embedded=true" width="100%" height="1700" style="border:none; border-radius:8px; background:#fff;" loading="lazy">読み込んでいます…</iframe>
+    <iframe id="googleFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSd-w35f8-Q76ksy-uy3nDVCRZFayti8ezyw9qa-f7am8UxBPQ/viewform?embedded=true" width="100%" height="700" style="border:none; border-radius:8px; background:#fff;" loading="lazy">読み込んでいます…</iframe>
     <p class="form-note" data-i18n="entry.note" style="margin-top:16px;">※フォームが表示されない場合や不明点がある場合、応募内容の編集用リンクを紛失した場合も、主催者(X、Discord、Twitchウィスパーなど)にご連絡いただければ、スプレッドシート上で内容を修正いたします。</p>
   </div>
 </section>
