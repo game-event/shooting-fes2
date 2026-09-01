@@ -431,6 +431,7 @@
   .entry-social a{color:#1a56c4;}
   .entry-social a:hover{text-decoration:underline;}
   .entry-field{font-size:15px; color:#2a2a35; margin-top:8px; line-height:1.6; word-break:break-word; overflow-wrap:anywhere;}
+  .entry-field-game{font-size:16px; font-weight:700; color:#1a1a22;}
   .entry-field b{color:#4a4a55; font-weight:600; font-family:var(--font-head); margin-right:6px;}
   .entry-field a{color:#1a56c4; word-break:break-word; overflow-wrap:anywhere;}
   .entry-field a:hover{text-decoration:underline;}
@@ -479,6 +480,7 @@
     .entry-streamer{font-size:17px;}
     .entry-social{font-size:12px; flex-direction:column; align-items:flex-start; gap:4px; white-space:normal;}
     .entry-field{font-size:13.5px;}
+    .entry-field-game{font-size:14px;}
     .entry-comment{font-size:14px;}
     .date-chip{font-size:11px; padding:2px 7px;}
     .btn{padding:12px 22px; font-size:14px;}
@@ -942,7 +944,7 @@
       if(e.discordAccount){ social += '<span><b>Discord：</b>'+escapeHtml(e.discordAccount)+'</span>'; }
 
       var fields = '';
-      if(safeGame){ fields += '<div class="entry-field"><b>'+dict['field.game']+'：</b>'+safeGame+'</div>'; }
+      if(safeGame){ fields += '<div class="entry-field entry-field-game"><b>'+dict['field.game']+'：</b>'+safeGame+'</div>'; }
       if(dateChips){ fields += '<div class="entry-field"><b>'+dict['field.dates']+'：</b><span class="entry-dates">'+dateChips+'</span></div>'; }
       if(safeTime){ fields += '<div class="entry-field"><b>'+dict['field.time']+'：</b>'+safeTime+'</div>'; }
 
