@@ -447,8 +447,6 @@
   .entry-dates{display:inline-flex; gap:6px; flex-wrap:wrap; vertical-align:middle;}
   .date-chip{font-family:var(--font-mono); font-size:12.5px; border:1px solid #e7e3d6; padding:3px 9px; border-radius:12px; background:#f4efe0; color:#3a3a44;}
   .entry-comment{font-size:16px; font-weight:700; color:#1a1a22; border-top:1px dashed #e7e3d6; padding-top:10px; margin-top:10px; word-break:break-word; overflow-wrap:anywhere;}
-  .entry-comment-translation{font-size:13.5px; font-weight:400; font-style:italic; color:#5a5a68; margin-top:6px; word-break:break-word; overflow-wrap:anywhere;}
-  .entry-comment-translation b{font-style:normal; color:#7a7a88; font-weight:600;}
   .empty-state{grid-column:1 / -1; text-align:center; color:var(--muted); font-size:14px; padding:40px 20px; border:1px dashed var(--line); border-radius:10px; background:rgba(255,255,255,.03);}
   .loading-state{grid-column:1 / -1; text-align:center; color:var(--muted); font-family:var(--font-mono); font-size:13px; padding:30px;}
 
@@ -492,7 +490,6 @@
     .entry-field{font-size:13.5px;}
     .entry-field-game{font-size:14px;}
     .entry-comment{font-size:14px;}
-    .entry-comment-translation{font-size:12px;}
     .date-chip{font-size:11px; padding:2px 7px;}
     .btn{padding:12px 22px; font-size:14px;}
     .btn-cta-large{font-size:16px; padding:16px 32px;}
@@ -640,7 +637,7 @@
     <a href="https://www.twitch.tv/tencho_land" target="_blank" rel="noopener">Twitch: tencho_land</a>
     <a href="https://x.com/tencho_land" target="_blank" rel="noopener">X: @tencho_land</a>
   </div>
-  <div class="footer-org">協力：<b>かぐばんさん</b>、<b>めんるいさん</b>、<b>シューマイさん</b>、<b>もちるさん</b></div>
+  <div class="footer-org"><span data-i18n="footer.supporters">協力：</span><b>かぐばんさん</b>、<b>めんるいさん</b>、<b>シューマイさん</b>、<b>もちるさん</b></div>
   <div class="footer-copy">&copy; 2026 第2回シューティング配信祭</div>
 </footer>
 
@@ -740,7 +737,7 @@
       'nav.about':'概要','nav.rules':'ルール','nav.notice':'注意事項',
       'nav.entry':'参加応募','nav.streams':'参加者一覧','nav.cta':'参加する',
       'hero.sub':'イベント期間中、みんなでシューティングゲームを配信する企画です。新旧・機種問わずOK。',
-      'hero.organizer':'主催：', 'hero.ghostBtn':'参加者一覧を見る',
+      'hero.organizer':'主催：', 'hero.ghostBtn':'参加者一覧を見る', 'footer.supporters':'協力：',
       'about.title':'イベント概要','about.tagline':'いろいろなシューティングゲームを配信して盛り上がろう!',
       'about.body':'「第2回シューティング配信祭」は、期間中にみんなでシューティングゲームを配信するだけの、ゆる〜い企画です。うまいとか下手とか関係なし!大好きなゲームをやるもよし、買って積んでたゲームに挑戦するもよし、参加者さん同士で交流するもよし。文化祭みたいなノリで、ワイワイ楽しみましょう〜!',
       'about.stat1':'開催期間(JST)','about.stat2n':'Twitch限定','about.stat2':'配信プラットフォーム',
@@ -771,8 +768,8 @@
       'streams.title':'参加者一覧','streams.desc':'応募内容は自動的に表示されます。',
       'streams.editNote':'※応募内容の編集をしたい場合は、応募時の編集用リンクからしていただくか、下記リンクの編集用フォームより変更したい内容を投稿してください。<br><a href="https://docs.google.com/forms/d/e/1FAIpQLScsP6anDM5EdlYkMww3vfpg_yOSlWJnD9VSewmGZEQ2YzhbAQ/viewform?usp=header" target="_blank" rel="noopener" class="edit-form-link">編集用フォーム</a><br>主催者(X、Discord)にご連絡いただいても内容を修正いたします。',
       'streams.loading':'読み込み中...',
-      'hero.countMsg':'現在の参加者は <b>{count}</b> 名です！<br>まだまだ募集しておりますのでお気軽にどうぞ！<br>締め切りは<span class="deadline-hl">12日21時</span>までです！<br>※参加者様には10月1日以降にXまたはDiscordにてご連絡させていただきます。',
-      'streams.countMsg':'現在の参加者は <b>{count}</b> 名です！<br>まだまだ募集しておりますのでお気軽にどうぞ！<br>締め切りは<span class="deadline-hl">12日21時</span>までです！',
+      'hero.countMsg':'現在の参加者は <b>{count}</b> 名です！<br>まだまだ募集しておりますのでお気軽にどうぞ！<br>応募締め切りは<span class="deadline-hl">最終日の12日21時</span>まで。',
+      'streams.countMsg':'現在の参加者は <b>{count}</b> 名です！<br>まだまだ募集しておりますのでお気軽にどうぞ！<br>応募締め切りは<span class="deadline-hl">最終日の12日21時</span>まで。',
       'streams.empty':'まだ応募がありません。最初の参加者になりましょう!','streams.emptyFiltered':'該当する配信予定はまだありません。',
       'streams.loadError':'読み込みに失敗しました。時間をおいて再度お試しください。',
       'streams.anon':'匿名',
@@ -782,7 +779,7 @@
       'nav.about':'About','nav.rules':'Rules','nav.notice':'Notice',
       'nav.entry':'Entry','nav.streams':'Participants','nav.cta':'Join',
       'hero.sub':'During the event, everyone streams shooter games together. Any title, old or new, any platform — all welcome.',
-      'hero.organizer':'Organizer:', 'hero.ghostBtn':'See Participants',
+      'hero.organizer':'Organizer:', 'hero.ghostBtn':'See Participants', 'footer.supporters':'Supporters:',
       'about.title':'Event Overview','about.tagline':"Let's stream all kinds of shooter games and have fun!",
       'about.body':"\"The 2nd Shooting Streaming Festival\" is a laid-back event where everyone just streams shooter games together during the period. Skill doesn't matter at all! Play your favorite game, finally try that game you bought and never touched, hang out with other participants — whatever you like. Let's enjoy it with a school-festival kind of energy!",
       'about.stat1':'Event Period (JST)','about.stat2n':'Twitch Only','about.stat2':'Streaming Platform',
@@ -813,8 +810,8 @@
       'streams.title':'Participants','streams.desc':'Entries are shown automatically.',
       'streams.editNote':'*If you\'d like to edit your entry, please use the edit link you received when you applied, or submit your requested changes via the edit form below.<br><a href="https://docs.google.com/forms/d/e/1FAIpQLScsP6anDM5EdlYkMww3vfpg_yOSlWJnD9VSewmGZEQ2YzhbAQ/viewform?usp=header" target="_blank" rel="noopener" class="edit-form-link">Edit Form</a><br>You\'re also welcome to contact the organizer (via X or Discord) and we\'ll update it for you.',
       'streams.loading':'Loading...',
-      'hero.countMsg':'There are currently <b>{count}</b> participants!<br>We\'re still accepting entries, so feel free to join!<br>The deadline is the day of the event!<br>*We will contact participants via X or Discord starting October 1st.',
-      'streams.countMsg':'There are currently <b>{count}</b> participants!<br>We\'re still accepting entries, so feel free to join!<br>The deadline is the day of the event!',
+      'hero.countMsg':'There are currently <b>{count}</b> participants!<br>We\'re still accepting entries, so feel free to join!<br>Entry deadline: <span class="deadline-hl">the final day, the 12th, 9:00 PM</span>.',
+      'streams.countMsg':'There are currently <b>{count}</b> participants!<br>We\'re still accepting entries, so feel free to join!<br>Entry deadline: <span class="deadline-hl">the final day, the 12th, 9:00 PM</span>.',
       'streams.empty':'No entries yet. Be the first to join!','streams.emptyFiltered':'No entries match this filter yet.',
       'streams.loadError':'Failed to load. Please try again later.',
       'streams.anon':'Anonymous',
@@ -961,15 +958,6 @@
       if(dateChips){ fields += '<div class="entry-field"><b>'+dict['field.dates']+'：</b><span class="entry-dates">'+dateChips+'</span></div>'; }
       if(safeTime){ fields += '<div class="entry-field"><b>'+dict['field.time']+'：</b>'+safeTime+'</div>'; }
 
-      var needsTranslation = e.comment && isEnglishOnlyComment(e.comment);
-      var commentHtml = '';
-      if(e.comment){
-        commentHtml = '<div class="entry-comment"><b>コメント：</b>' + escapeHtml(e.comment) + '</div>';
-        if(needsTranslation){
-          commentHtml += '<div class="entry-comment-translation" id="trans-' + escapeHtml(e._key) + '"></div>';
-        }
-      }
-
       html += '<div class="entry-row" data-key="'+escapeHtml(e._key)+'">' +
         '<div class="entry-left"><div class="entry-avatar">' + avatarHtml + '</div></div>' +
         '<div class="entry-main">' +
@@ -977,47 +965,11 @@
           (social ? '<div class="entry-social">'+social+'</div>' : '') +
           '</div>' +
           fields +
-          commentHtml +
+          (e.comment ? '<div class="entry-comment"><b>コメント：</b>' + escapeHtml(e.comment) + '</div>' : '') +
         '</div>' +
         '</div>';
     });
     wrap.innerHTML = html;
-
-    filtered.forEach(function(e){
-      if(e.comment && isEnglishOnlyComment(e.comment)){
-        translateCommentToJa(e._key, e.comment);
-      }
-    });
-  }
-
-  // ---- auto Japanese translation for English-only comments ----
-  var translationCache = {};
-  function isEnglishOnlyComment(text){
-    if(!text) return false;
-    // bail out if it already contains Japanese (or other CJK) characters
-    if(/[぀-ヿ㐀-鿿＀-￯]/.test(text)) return false;
-    // only worth translating if it actually contains letters
-    return /[A-Za-z]/.test(text);
-  }
-  async function translateCommentToJa(key, text){
-    var el = document.getElementById('trans-' + key);
-    if(!el) return;
-    if(translationCache[text]){
-      el.innerHTML = '<b>日本語訳：</b>' + escapeHtml(translationCache[text]);
-      return;
-    }
-    try{
-      var res = await fetch('https://api.mymemory.translation.net/get?q=' + encodeURIComponent(text) + '&langpair=en|ja');
-      var data = await res.json();
-      var translated = data && data.responseData && data.responseData.translatedText;
-      if(translated){
-        translationCache[text] = translated;
-        var el2 = document.getElementById('trans-' + key);
-        if(el2){ el2.innerHTML = '<b>日本語訳：</b>' + escapeHtml(translated); }
-      }
-    }catch(err){
-      // translation failed silently; original English comment still shown
-    }
   }
 
   loadEntries().then(function(entries){ allEntries = entries; render(); });
