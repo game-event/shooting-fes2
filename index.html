@@ -278,6 +278,16 @@
     box-shadow:0 5px 0 #8f1b2c, 0 10px 28px rgba(224,51,74,.4);
   }
   .btn-cta-large:hover{box-shadow:0 7px 0 #8f1b2c, 0 14px 32px rgba(224,51,74,.45);}
+  .hero-live-cta{margin-top:26px;}
+  .btn-live-large{
+    display:inline-block; text-decoration:none;
+    font-family:var(--font-head); font-weight:700; font-size:18px; letter-spacing:.04em;
+    padding:18px 44px; border-radius:30px; border:1px solid transparent; cursor:pointer;
+    background:linear-gradient(180deg, #ff9a3c, #e6730f); color:#fff;
+    box-shadow:0 5px 0 #a3480a, 0 10px 26px rgba(230,115,15,.4);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-live-large:hover{transform:translateY(-2px); box-shadow:0 7px 0 #a3480a, 0 14px 30px rgba(230,115,15,.45);}
   .btn-ghost:hover{background:var(--blue-light);}
   .btn-small{
     font-family:var(--font-head); font-size:12px; font-weight:600; letter-spacing:.03em;
@@ -498,6 +508,7 @@
     .date-chip{font-size:11px; padding:2px 7px;}
     .btn{padding:12px 22px; font-size:14px;}
     .btn-cta-large{font-size:16px; padding:16px 32px;}
+    .btn-live-large{font-size:16px; padding:16px 32px;}
     #googleFormFrame{height:1700px;}
   }
 </style>
@@ -547,6 +558,9 @@
       <a href="#streams" class="btn btn-ghost" data-i18n="hero.ghostBtn">参加者一覧を見る</a>
     </div>
     <p class="hero-count" id="heroCount"></p>
+    <div class="hero-live-cta">
+      <a href="https://event.twitchepg.org/stg2" target="_blank" rel="noopener" class="btn-live-large" data-i18n="hero.liveBtn">現在配信中の一覧はこちら</a>
+    </div>
   </div>
 </section>
 
@@ -752,6 +766,7 @@
       'recommend.note':'初心者さんでも遊びやすいタイトルを紹介しています。',
       'hero.sub':'イベント期間中、みんなでシューティングゲームを配信する企画です。新旧・機種問わずOK。',
       'hero.organizer':'主催：', 'hero.ghostBtn':'参加者一覧を見る', 'footer.supporters':'協力：',
+      'hero.liveBtn':'現在配信中の一覧はこちら',
       'about.title':'イベント概要','about.tagline':'いろいろなシューティングゲームを配信して盛り上がろう!',
       'about.body':'「第2回シューティング配信祭」は、期間中にみんなでシューティングゲームを配信するだけの、ゆる〜い企画です。うまいとか下手とか関係なし!大好きなゲームをやるもよし、買って積んでたゲームに挑戦するもよし、参加者さん同士で交流するもよし。文化祭みたいなノリで、ワイワイ楽しみましょう〜!',
       'about.stat1':'開催期間(JST)','about.stat2n':'Twitch限定','about.stat2':'配信プラットフォーム',
@@ -794,6 +809,7 @@
       'recommend.note':'Featuring titles that are easy and fun for beginners to pick up.',
       'hero.sub':'During the event, everyone streams shooter games together. Any title, old or new, any platform — all welcome.',
       'hero.organizer':'Organizer:', 'hero.ghostBtn':'See Participants', 'footer.supporters':'Supporters:',
+      'hero.liveBtn':'See Who\'s Live Now',
       'about.title':'Event Overview','about.tagline':"Let's stream all kinds of shooter games and have fun!",
       'about.body':"\"The 2nd Shooting Streaming Festival\" is a laid-back event where everyone just streams shooter games together during the period. Skill doesn't matter at all! Play your favorite game, finally try that game you bought and never touched, hang out with other participants — whatever you like. Let's enjoy it with a school-festival kind of energy!",
       'about.stat1':'Event Period (JST)','about.stat2n':'Twitch Only','about.stat2':'Streaming Platform',
